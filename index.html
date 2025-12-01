@@ -2,28 +2,29 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>ML для спектроскопии и фотоники — исследовательский проект</title>
+  <title>[[Название проекта]] — ML для спектроскопии и фотоники</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="Научный проект в области спектроскопии и фотоники с применением методов машинного обучения."
+    content="Научный проект по применению ML к задачам спектроскопии и фотоники."
   />
   <style>
     :root {
-      --bg: #020617;
-      --bg-alt: #020617;
-      --card: rgba(15, 23, 42, 0.94);
-      --card-soft: rgba(15, 23, 42, 0.85);
-      --border-subtle: rgba(148, 163, 184, 0.35);
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.12);
-      --accent-strong: #22c55e;
-      --text-main: #e5e7eb;
-      --text-muted: #9ca3af;
-      --text-soft: #6b7280;
-      --radius-lg: 18px;
-      --radius-md: 12px;
-      --max-width: 1040px;
+      --bg: #f4eee4;
+      --bg-alt: #f1eadf;
+      --surface: #f7f1e7;
+      --surface-strong: #f0e4d3;
+      --text-main: #18181b;
+      --text-muted: #52525b;
+      --text-soft: #78716c;
+      --accent: #b9552a;
+      --accent-dark: #9a3c1a;
+      --accent-soft: #f7e1d2;
+      --border: #e0d3c1;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --max-width: 1120px;
     }
 
     * {
@@ -34,45 +35,38 @@
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
         "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top left, #0f172a 0, #020617 42%),
-        radial-gradient(circle at 120% 0, #1e293b 0, #020617 50%),
-        var(--bg);
+      background: var(--bg);
       color: var(--text-main);
       -webkit-font-smoothing: antialiased;
     }
 
     a {
-      color: var(--accent);
+      color: var(--accent-dark);
       text-decoration: none;
     }
-
     a:hover {
       text-decoration: underline;
     }
 
+    /* NAVBAR */
+
     header {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      background: rgba(244, 238, 228, 0.96);
+      backdrop-filter: blur(10px);
       position: sticky;
       top: 0;
-      z-index: 20;
-      backdrop-filter: blur(16px);
-      background: linear-gradient(
-        to bottom,
-        rgba(2, 6, 23, 0.9),
-        rgba(2, 6, 23, 0.75),
-        transparent
-      );
-      border-bottom: 1px solid rgba(15, 23, 42, 0.8);
+      z-index: 10;
     }
 
     .nav {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 14px 18px 10px;
+      padding: 14px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
+      gap: 16px;
       flex-wrap: wrap;
     }
 
@@ -83,343 +77,413 @@
     }
 
     .nav-logo {
-      width: 26px;
-      height: 26px;
-      border-radius: 9px;
-      background: radial-gradient(circle at 30% 0, #38bdf8, #1e293b 55%, #020617);
-      border: 1px solid rgba(148, 163, 184, 0.7);
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 30% 0, #f97316, #b9552a 55%, #784332);
       box-shadow:
-        0 0 0 1px rgba(15, 23, 42, 0.7),
-        0 18px 40px rgba(15, 23, 42, 0.85);
-    }
-
-    .nav-title-block {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
+        0 0 0 1px rgba(148, 131, 111, 0.6),
+        0 10px 24px rgba(148, 131, 111, 0.6);
     }
 
     .nav-title {
-      font-size: 0.9rem;
       font-weight: 600;
-      letter-spacing: 0.04em;
+      font-size: 0.95rem;
+      letter-spacing: .06em;
       text-transform: uppercase;
-      color: var(--text-muted);
     }
 
-    .nav-sub {
-      font-size: 0.78rem;
+    .nav-subtitle {
+      font-size: 0.8rem;
       color: var(--text-soft);
+      margin-top: 2px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 0.92rem;
     }
 
     .nav-links {
       display: flex;
+      gap: 16px;
       flex-wrap: wrap;
-      gap: 14px;
-      font-size: 0.9rem;
     }
 
     .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      padding: 2px 0;
-      border-bottom: 1px solid transparent;
+      color: var(--text-soft);
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
     }
-
     .nav-links a:hover {
       color: var(--text-main);
-      border-bottom-color: rgba(148, 163, 184, 0.45);
+      border-bottom-color: rgba(0, 0, 0, 0.14);
     }
+
+    .nav-cta {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid #111827;
+      background: #111827;
+      color: #fefce8;
+      font-size: 0.86rem;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .nav-cta:hover {
+      background: #020617;
+    }
+
+    /* LAYOUT */
 
     main {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 22px 18px 40px;
+      padding: 26px 20px 40px;
     }
+
+    /* HERO */
 
     .hero {
-      position: relative;
-      border-radius: 26px;
-      padding: 26px 20px 24px;
-      margin-bottom: 22px;
-      background:
-        radial-gradient(circle at top left, rgba(56, 189, 248, 0.14), transparent 58%),
-        radial-gradient(circle at 110% 0, rgba(34, 197, 94, 0.12), transparent 55%),
-        var(--card);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      box-shadow:
-        0 24px 60px rgba(15, 23, 42, 0.9),
-        0 0 0 1px rgba(15, 23, 42, 0.95);
-      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.9fr);
+      gap: 40px;
+      align-items: center;
+      margin-top: 10px;
+      margin-bottom: 40px;
     }
 
-    @media (min-width: 768px) {
+    @media (max-width: 880px) {
       .hero {
-        padding: 32px 30px 30px;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
       }
     }
 
-    .hero-topline {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-soft);
-      margin-bottom: 10px;
-    }
-
-    .hero-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: radial-gradient(circle, #22c55e, #15803d);
-      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.12);
-    }
-
-    .hero-title {
-      font-size: clamp(2.1rem, 4vw, 2.6rem);
-      line-height: 1.08;
-      letter-spacing: -0.04em;
-      margin: 0 0 10px;
-    }
-
-    .hero-title span {
-      background: linear-gradient(to right, #f9fafb, #bfdbfe);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .hero-subtitle {
+    .hero-heading {
+      font-size: clamp(2.1rem, 4vw, 2.8rem);
+      line-height: 1.06;
+      letter-spacing: -0.03em;
       margin: 0 0 16px;
-      max-width: 640px;
-      color: var(--text-muted);
-      font-size: 0.98rem;
-      line-height: 1.7;
     }
 
-    .hero-note {
-      border-radius: 12px;
-      border: 1px solid rgba(148, 163, 184, 0.45);
-      background: linear-gradient(
-        to right,
-        rgba(15, 23, 42, 0.9),
-        rgba(15, 23, 42, 0.7)
-      );
-      padding: 10px 12px;
+    .hero-heading strong {
+      font-weight: 700;
+      text-decoration: underline;
+      text-decoration-thickness: .12em;
+      text-decoration-color: rgba(0, 0, 0, 0.9);
+      text-underline-offset: .18em;
+    }
+
+    .hero-lead {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin-bottom: 18px;
+    }
+
+    .hero-meta {
       font-size: 0.9rem;
-      color: var(--text-muted);
-      max-width: 680px;
-    }
-
-    .hero-note b {
-      color: #e5e7eb;
-      font-weight: 500;
+      color: var(--text-soft);
+      max-width: 540px;
+      margin-bottom: 18px;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      margin-top: 18px;
+      gap: 12px;
+      margin-bottom: 8px;
     }
 
     .btn-primary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 9px 16px;
-      font-size: 0.92rem;
+      padding: 10px 18px;
       border-radius: 999px;
-      border: 1px solid rgba(56, 189, 248, 0.4);
-      background: radial-gradient(circle at 30% 0, #38bdf8, #0369a1);
-      color: #0b1120;
+      background: #111827;
+      color: #fefce8;
+      border: 1px solid #111827;
+      font-size: 0.92rem;
       font-weight: 500;
-      cursor: pointer;
       text-decoration: none;
-      box-shadow:
-        0 18px 40px rgba(8, 47, 73, 0.9),
-        0 0 0 1px rgba(15, 23, 42, 0.9);
     }
-
     .btn-primary:hover {
-      filter: brightness(1.03);
-      transform: translateY(-0.5px);
+      background: #020617;
     }
 
-    .btn-secondary {
+    .btn-ghost {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      padding: 8px 14px;
-      font-size: 0.9rem;
+      padding: 9px 14px;
       border-radius: 999px;
-      border: 1px dashed rgba(148, 163, 184, 0.55);
-      background: rgba(15, 23, 42, 0.7);
-      color: var(--text-muted);
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.5);
+      font-size: 0.9rem;
+      color: var(--text-soft);
       text-decoration: none;
     }
-
-    .btn-secondary span {
-      font-size: 1.05rem;
+    .btn-ghost span {
+      margin-left: 6px;
+    }
+    .btn-ghost:hover {
+      border-color: #111827;
+      color: #111827;
     }
 
-    .btn-secondary:hover {
-      border-style: solid;
-      border-color: rgba(148, 163, 184, 0.8);
-      color: var(--text-main);
-    }
-
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      font-size: 0.8rem;
+    .hero-footnote {
+      font-size: 0.82rem;
       color: var(--text-soft);
-      margin-top: 18px;
     }
 
-    .hero-meta span {
-      padding: 4px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(30, 64, 175, 0.7);
-      background: radial-gradient(circle at 0 0, rgba(37, 99, 235, 0.16), transparent 60%);
-      backdrop-filter: blur(6px);
+    /* Hero illustration block */
+
+    .hero-illustration {
+      justify-self: center;
     }
 
-    .cards-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
-      gap: 18px;
-      margin-bottom: 18px;
-    }
-
-    @media (max-width: 860px) {
-      .cards-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .card {
+    .hero-card {
+      background: var(--surface);
       border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
-      background: var(--card-soft);
-      padding: 20px 18px 18px;
-      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.85);
+      padding: 24px 22px;
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.06);
     }
 
-    @media (min-width: 768px) {
-      .card {
-        padding: 24px 22px 20px;
-      }
-    }
-
-    .card + .card {
-      margin-top: 18px;
-    }
-
-    .section-label {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-soft);
-      margin-bottom: 4px;
-    }
-
-    .section-title {
-      font-size: 1.15rem;
-      margin: 0 0 10px;
-      letter-spacing: -0.02em;
-    }
-
-    .section-title span {
-      color: var(--accent);
-    }
-
-    p {
-      margin: 0 0 10px;
-      color: var(--text-muted);
-      font-size: 0.94rem;
-      line-height: 1.7;
-    }
-
-    ul {
-      margin: 4px 0 10px 18px;
-      padding: 0;
-      color: var(--text-muted);
-      font-size: 0.94rem;
-      line-height: 1.6;
-    }
-
-    li + li {
-      margin-top: 4px;
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 6px;
-    }
-
-    .pill {
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: rgba(15, 23, 42, 0.9);
-      font-size: 0.78rem;
-      color: var(--text-soft);
-    }
-
-    .role-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(45, 212, 191, 0.5);
-      background: rgba(15, 23, 42, 0.9);
-      font-size: 0.8rem;
-      color: #a5f3fc;
+    .hero-card-title {
+      font-size: 1.05rem;
+      font-weight: 600;
       margin-bottom: 6px;
     }
 
-    .role-dot {
-      width: 7px;
-      height: 7px;
+    .hero-card-sub {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-bottom: 16px;
+    }
+
+    .hero-card-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+      color: var(--text-soft);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
       border-radius: 999px;
-      background: radial-gradient(circle, #22c55e, #166534);
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      font-size: 0.8rem;
+      font-weight: 500;
     }
 
-    .two-column {
+    /* FEATURE CARDS SECTION (как блок с тремя плитками у Anthropic) */
+
+    .feature-section {
+      margin-bottom: 40px;
+    }
+
+    .section-heading {
+      font-size: 1.35rem;
+      margin-bottom: 8px;
+    }
+
+    .section-text {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin-bottom: 18px;
+    }
+
+    .feature-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
-      align-items: flex-start;
-      margin-top: 6px;
     }
 
-    @media (max-width: 780px) {
-      .two-column {
+    @media (max-width: 960px) {
+      .feature-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .feature-grid {
         grid-template-columns: minmax(0, 1fr);
       }
     }
 
-    .subsection-title {
-      font-size: 0.98rem;
-      margin: 12px 0 6px;
-      color: #e5e7eb;
+    .feature-card {
+      border-radius: var(--radius-md);
+      padding: 18px 18px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 160px;
+    }
+
+    .feature-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--text-soft);
+      margin-bottom: 6px;
+    }
+
+    .feature-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .feature-text {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-bottom: 12px;
+    }
+
+    .feature-link {
+      font-size: 0.85rem;
+      color: var(--accent-dark);
+      display: inline-flex;
+      align-items: center;
+      margin-top: auto;
+    }
+    .feature-link span {
+      margin-left: 4px;
+    }
+
+    /* LIST SECTION (подобие таблички/списка новостей) */
+
+    .list-card {
+      margin-top: 24px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: #f8f2e8;
+      overflow: hidden;
+    }
+
+    .list-header {
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid #e0d3c1;
+    }
+
+    .list-header-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-soft);
+    }
+
+    .list-header-extra {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+    }
+
+    .list-body {
+      font-size: 0.9rem;
+    }
+
+    .list-row {
+      display: grid;
+      grid-template-columns: 2.2fr 1.2fr 0.8fr;
+      gap: 12px;
+      padding: 10px 18px;
+      align-items: baseline;
+      border-top: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .list-row:nth-child(odd) {
+      background: rgba(255, 255, 255, 0.65);
+    }
+
+    .list-row-type {
+      font-size: 0.82rem;
+      color: var(--text-soft);
+    }
+
+    .list-row-date {
+      font-size: 0.82rem;
+      color: var(--text-soft);
+      text-align: right;
+    }
+
+    @media (max-width: 760px) {
+      .list-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2px;
+      }
+      .list-row-date {
+        text-align: left;
+      }
+    }
+
+    /* TEAM & CONTACT */
+
+    .two-col-block {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 880px) {
+      .two-col-block {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .plain-card {
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 20px 18px 18px;
+    }
+
+    .plain-card h2 {
+      font-size: 1.1rem;
+      margin: 0 0 8px;
+    }
+
+    .plain-card p {
+      margin-bottom: 10px;
+      font-size: 0.94rem;
+      color: var(--text-muted);
+    }
+
+    .plain-card ul {
+      margin: 4px 0 10px 18px;
+      padding: 0;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .plain-card li + li {
+      margin-top: 4px;
     }
 
     footer {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 14px 18px 26px;
-      font-size: 0.78rem;
+      padding: 18px 20px 26px;
+      font-size: 0.8rem;
       color: var(--text-soft);
     }
   </style>
@@ -429,270 +493,229 @@
     <div class="nav">
       <div class="nav-left">
         <div class="nav-logo"></div>
-        <div class="nav-title-block">
-          <div class="nav-title">Spectroscopy × ML</div>
-          <div class="nav-sub">исследовательский проект [[лаборатории/группы]]</div>
+        <div>
+          <div class="nav-title">[[Название проекта / группы]]</div>
+          <div class="nav-subtitle">ML для спектроскопии и фотоники</div>
         </div>
       </div>
-      <nav class="nav-links">
-        <a href="#about">О проекте</a>
-        <a href="#goals">Научные задачи</a>
-        <a href="#ml-role">ML-роль</a>
-        <a href="#team">Команда</a>
-        <a href="#contact">Контакты</a>
-      </nav>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="#about">О проекте</a>
+          <a href="#features">Направления</a>
+          <a href="#ml-role">ML-роль</a>
+          <a href="#team">Команда</a>
+        </nav>
+        <a class="nav-cta" href="#contact">Связаться</a>
+      </div>
     </div>
   </header>
 
   <main>
     <!-- HERO -->
-    <section class="hero" id="top">
-      <div class="hero-topline">
-        <span class="hero-dot"></span>
-        Научный проект · спектроскопия, фотоника и ML
+    <section class="hero">
+      <div>
+        <h1 class="hero-heading">
+          Исследования в области <strong>ML</strong> и <strong>спектроскопии</strong>,
+          которые можно использовать в реальных экспериментах
+        </h1>
+        <p class="hero-lead">
+          Мы разрабатываем и изучаем модели машинного обучения для анализа
+          спектров (Raman / SERS, фотолюминесценция и др.) и сигналов
+          в фотонных структурах, чтобы получать воспроизводимые и физически
+          интерпретируемые результаты на реальных установках.
+        </p>
+        <p class="hero-meta">
+          Проект поддержан грантом [[название фонда / программы, номер гранта]]
+          и реализуется на базе [[организация / лаборатория / кафедра]].
+        </p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="mailto:[[your.email@example.com]]?subject=Spectroscopy%20%2B%20ML">
+            Написать координатору проекта
+          </a>
+          <a class="btn-ghost" href="#ml-role">
+            Узнать, чем можно помочь <span>→</span>
+          </a>
+        </div>
+        <div class="hero-footnote">
+          Частичная занятость, гибкий формат, соавторство в научных публикациях.
+        </div>
       </div>
-      <h1 class="hero-title">
-        <span>Машинное обучение</span> для анализа спектров и фотонных структур
-      </h1>
-      <p class="hero-subtitle">
-        Мы изучаем, как методы ML помогают извлекать физически осмысленную информацию
-        из спектров (Raman / SERS, фотолюминесценция и др.) и сигналов в фотонных
-        структурах — с акцентом на реальные экспериментальные данные и публикуемые
-        результаты.
-      </p>
-      <p class="hero-note">
-        Проект поддержан грантом <b>[[название фонда / программы, номер]]</b>
-        и реализуется на базе <b>[[организация / лаборатория]]</b>. Сейчас мы
-        открыты к сотрудничеству и ищем специалиста по машинному обучению,
-        заинтересованного в работе с экспериментальными данными по
-        спектроскопии и фотонике.
-      </p>
-      <div class="hero-actions">
-        <!-- замените email / телеграм -->
-        <a class="btn-primary" href="mailto:your.email@example.com?subject=Spectroscopy%20%2B%20ML">
-          Связаться с координатором
-        </a>
-        <a class="btn-secondary" href="#ml-role">
-          <span>⟶</span> Задачи для ML-специалиста
-        </a>
-      </div>
-      <div class="hero-meta">
-        <span>Срок проекта: [[2024–2026]]</span>
-        <span>Области: спектроскопия · фотоника · ML</span>
-        <span>Формат: удалённо / гибридно</span>
+
+      <div class="hero-illustration">
+        <div class="hero-card">
+          <div class="hero-badge">Открыт набор</div>
+          <h2 class="hero-card-title">ML-инженер / исследователь</h2>
+          <p class="hero-card-sub">
+            Работа с реальными спектроскопическими данными, постановка
+            экспериментов и подготовка результатов к публикациям.
+          </p>
+          <div class="hero-card-row">
+            <div>
+              <strong>Фокус</strong><br />
+              анализ спектров, денойзинг, классификация, регрессия параметров
+            </div>
+            <div>
+              <strong>Формат</strong><br />
+              [[X часов в неделю]], удалённо / гибридно, грантовая оплата
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ABOUT + GOALS -->
-    <section class="cards-grid">
-      <article class="card" id="about">
-        <div class="section-label">О проекте</div>
-        <h2 class="section-title">Контекст и постановка задачи</h2>
-        <p>
-          В проекте анализируются экспериментальные данные спектроскопии и фотоники:
-          [[уточните: Raman / SERS-спектры, спектры фотолюминесценции, спектры
-          поглощения, отклик фотонных кристаллов и т.п.]]. Нас интересует, какие
-          параметры образцов и среды можно надёжно извлекать по измеренным
-          спектрам и сигналам с помощью современных методов машинного обучения.
-        </p>
-        <p>
-          Классические подходы (фильтрация, подгонка линий, деконволюция)
-          чувствительны к шуму, дрейфу установки и вариативности условий
-          эксперимента. Мы исследуем, могут ли ML-модели дополнить и расширить
-          эти методы — при сохранении физической интерпретируемости результатов.
-        </p>
-        <p>
-          Проект выполняется в сотрудничестве с [[партнёры: лаборатория,
-          кафедра, клиника, компания и т.д.]], обеспечивающими доступ к данным
-          и доменной экспертизе.
-        </p>
-      </article>
+    <!-- FEATURE CARDS -->
+    <section class="feature-section" id="features">
+      <h2 class="section-heading">Чем мы занимаемся</h2>
+      <p class="section-text">
+        Проект на стыке спектроскопии, фотоники и машинного обучения. Ниже —
+        три основных направления работы, куда можно включиться.
+      </p>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <div>
+            <div class="feature-label">Направление 1</div>
+            <h3 class="feature-title">Обработка и унификация спектров</h3>
+            <p class="feature-text">
+              Сбор, очистка и приведение к единому формату массивов Raman / SERS
+              и других спектров, полученных на разных установках и в разных режимах.
+            </p>
+          </div>
+          <a class="feature-link" href="#about">
+            Подробнее о данных <span>→</span>
+          </a>
+        </article>
 
-      <article class="card" id="goals">
-        <div class="section-label">Научные задачи</div>
-        <h2 class="section-title">План работ и направления</h2>
-        <p>
-          На горизонте [[срок, например: 2–3 лет]] мы планируем:
-        </p>
-        <ul>
-          <li>
-            Сформировать и унифицировать массивы спектров / сигналов,
-            полученных при различных режимах и условиях эксперимента.
-          </li>
-          <li>
-            Исследовать методы ML для денойзинга, классификации, регрессии
-            параметров, кластеризации и поиска аномалий в спектроскопических данных.
-          </li>
-          <li>
-            Сопоставить результаты ML-моделей с физическими моделями и независимыми
-            измерениями; оценить устойчивость и интерпретируемость.
-          </li>
-          <li>
-            Подготовить и подать результаты в профильные журналы и на конференции
-            по спектроскопии, фотонике и прикладному ML.
-          </li>
-        </ul>
-        <p class="subsection-title">Данные и стек</p>
-        <p>
-          В работе используются:
-        </p>
-        <ul>
-          <li>[[пример: SERS-спектры биомаркеров на различных подложках]];</li>
-          <li>[[пример: Raman/PL-спектры нанофотонных структур]];</li>
-          <li>[[пример: временные ряды и сканы по параметрам установки]].</li>
-        </ul>
-        <p>
-          Основные инструменты: Python, PyTorch / TensorFlow, NumPy, pandas,
-          scikit-learn; для репозиториев кода — Git, при необходимости —
-          Docker и системы отслеживания экспериментов.
-        </p>
-        <div class="pill-row">
-          <span class="pill">Python</span>
-          <span class="pill">PyTorch / TF</span>
-          <span class="pill">Спектроскопические данные</span>
-          <span class="pill">Фотонные структуры</span>
-          <span class="pill">Научные публикации</span>
+        <article class="feature-card">
+          <div>
+            <div class="feature-label">Направление 2</div>
+            <h3 class="feature-title">ML-модели для анализа спектров</h3>
+            <p class="feature-text">
+              Исследуем модели для денойзинга, классификации, регрессии
+              параметров и поиска аномалий. Сравниваем с классическими методами
+              и физическими моделями.
+            </p>
+          </div>
+          <a class="feature-link" href="#ml-role">
+            Задачи для ML-специалиста <span>→</span>
+          </a>
+        </article>
+
+        <article class="feature-card">
+          <div>
+            <div class="feature-label">Направление 3</div>
+            <h3 class="feature-title">Публикуемые результаты</h3>
+            <p class="feature-text">
+              Готовим статьи и доклады, планируем открывать часть кода и
+              агрегированных данных там, где это возможно по условиям гранта.
+            </p>
+          </div>
+          <a class="feature-link" href="#contact">
+            Обсудить сотрудничество <span>→</span>
+          </a>
+        </article>
+      </div>
+
+      <!-- LIST, как блок Featured -->
+      <div class="list-card">
+        <div class="list-header">
+          <div class="list-header-title">Примеры задач / под-проектов</div>
+          <div class="list-header-extra">обновляем по мере появления</div>
         </div>
-      </article>
+        <div class="list-body">
+          <div class="list-row">
+            <div>Бейзлайн-модель для классификации SERS-спектров биомаркеров</div>
+            <div class="list-row-type">ML-эксперименты</div>
+            <div class="list-row-date">сейчас в работе</div>
+          </div>
+          <div class="list-row">
+            <div>Сравнение классических методов подгонки линий и нейросетевых моделей</div>
+            <div class="list-row-type">исследование</div>
+            <div class="list-row-date">[[план: Q3 2025]]</div>
+          </div>
+          <div class="list-row">
+            <div>Публикация набора анонимизированных спектров для открытых экспериментов</div>
+            <div class="list-row-type">инфраструктура</div>
+            <div class="list-row-date">[[план: Q4 2025]]</div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ML ROLE -->
-    <section class="card" id="ml-role">
-      <div class="role-chip">
-        <span class="role-dot"></span>
-        Открытая роль · ML-специалист / исследователь
-      </div>
-      <h2 class="section-title">Роль специалиста по машинному обучению</h2>
+    <section class="plain-card" id="ml-role">
+      <h2>Роль ML-инженера / исследователя</h2>
       <p>
-        Проект ориентирован на исследовательскую работу: постановка и проверка
-        гипотез, воспроизводимость экспериментов, подготовка публикаций. Мы
-        ищем человека, который возьмёт на себя разработку и анализ ML-моделей
-        для наших спектров и фотонных сигналов.
+        Мы ищем человека, которому интересно объединить работу с
+        экспериментальными данными и современным ML. Ниже примерный контур задач
+        — конкретика будет зависеть от ваших интересов и опыта.
       </p>
-
-      <div class="two-column">
+      <div class="two-col-block" style="margin-top:18px;">
         <div>
-          <p class="subsection-title">Примеры задач</p>
+          <h3 style="margin:0 0 6px;font-size:0.98rem;">Примеры задач</h3>
           <ul>
-            <li>
-              Построение и обучение моделей для анализа спектров:
-              классификация образцов, оценка концентраций, извлечение параметров среды.
-            </li>
-            <li>
-              Проектирование протоколов валидации и сравнения моделей:
-              разбиение выборок, выбор метрик, анализ устойчивости.
-            </li>
-            <li>
-              Подготовка и предварительная обработка данных: нормировка,
-              базовая фильтрация, агрегирование; по согласованию — аугментации.
-            </li>
-            <li>
-              Репродукция и адаптация идей из публикаций по ML и
-              спектроскопии на наших данных.
-            </li>
-            <li>
-              Подготовка иллюстраций и аналитики для статей и докладов.
-            </li>
+            <li>Построение и обучение моделей для анализа спектров: классификация образцов, оценка концентраций, регрессия параметров среды.</li>
+            <li>Проектирование и проведение серий ML-экспериментов; выбор метрик и схем валидации.</li>
+            <li>Предобработка данных: базовый денойзинг, нормировка, агрегация; по согласованию — аугментации.</li>
+            <li>Репродукция и адаптация методов из статей по ML и спектроскопии на наших данных.</li>
+            <li>Подготовка графиков и разделов «Methods / Results» для статей и докладов.</li>
           </ul>
         </div>
         <div>
-          <p class="subsection-title">Ожидаемый профиль</p>
+          <h3 style="margin:0 0 6px;font-size:0.98rem;">Ожидаемый профиль</h3>
           <ul>
-            <li>
-              Уверенный Python и опыт работы с PyTorch / TensorFlow / JAX
-              на уровне реализации собственных моделей.
-            </li>
-            <li>
-              Понимание основных концепций ML: переобучение, регуляризация,
-              валидация, выбор метрик.
-            </li>
-            <li>
-              Готовность разбираться в статьях по ML и по спектроскопии /
-              фотонике совместно с доменными специалистами.
-            </li>
-            <li>
-              Интерес к работе с экспериментальными данными; опыт в
-              спектроскопии или фотонике приветствуется, но не обязателен.
-            </li>
+            <li>Уверенный Python, опыт работы с PyTorch / TensorFlow / JAX.</li>
+            <li>Понимание базовых концепций ML: переобучение, регуляризация, валидация, выбор метрик.</li>
+            <li>Готовность разбираться в статьях и экспериментальных данных вместе с физиками/химиками.</li>
+            <li>Интерес к спектроскопии и фотонике; опыт в этих областях желателен, но не обязателен.</li>
           </ul>
-          <p class="subsection-title">Формат участия</p>
-          <p>
-            Частичная занятость с гибким графиком (ориентировочно
-            [[X часов в неделю]]) в удалённом или гибридном формате.
-            Предусматривается вознаграждение из средств гранта
-            (ориентир: [[N ₽ в месяц]] при указанной нагрузке) и
-            соавторство в публикациях по результатам работы.
+          <p style="font-size:0.9rem;color:var(--text-soft);">
+            Формат: частичная занятость (~[[X часов/нед]]), гибкий график,
+            удалённо / гибридно. Оплата из гранта (ориентир: [[N ₽ в месяц]])
+            + соавторство в публикациях.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- TEAM + CONTACT -->
-    <section class="cards-grid">
-      <article class="card" id="team">
-        <div class="section-label">Команда</div>
-        <h2 class="section-title">Исследовательская группа</h2>
+    <!-- TEAM & CONTACT -->
+    <section class="two-col-block" id="team">
+      <article class="plain-card">
+        <h2>Команда проекта</h2>
         <p>
-          Проект выполняется на базе [[лаборатория / кафедра / институт]]. В
-          состав команды входят:
+          Проект выполняется на базе [[лаборатория / кафедра / институт]].
         </p>
         <ul>
-          <li>
-            <strong>[[Имя Фамилия]]</strong> — руководитель проекта, [[должность,
-            учёная степень, область интересов]].
-          </li>
-          <li>
-            <strong>[[Имя Фамилия]]</strong> — экспериментальная часть
-            (спектроскопия / фотоника).
-          </li>
-          <li>
-            <strong>[[Имя Фамилия]]</strong> — численное моделирование
-            и анализ данных.
-          </li>
-          <li>
-            [[Добавьте при необходимости других участников и партнёров.]]
-          </li>
+          <li><strong>[[Имя Фамилия]]</strong> — руководитель проекта, [[должность, степень, область интересов]].</li>
+          <li><strong>[[Имя Фамилия]]</strong> — экспериментальная часть (спектроскопия / фотоника).</li>
+          <li><strong>[[Имя Фамилия]]</strong> — численное моделирование и анализ данных.</li>
+          <li>[[Добавьте других участников и партнёров при необходимости]].</li>
         </ul>
         <p>
-          К участию приглашаются студенты, аспиранты и исследователи,
-          которым интересны пересечения физики, химии, биологии и методов ML.
+          Открыты к сотрудничеству со студентами, аспирантами и исследователями,
+          которым интересны пересечения физики, химии, биологии и ML.
         </p>
       </article>
 
-      <article class="card" id="contact">
-        <div class="section-label">Контакты</div>
-        <h2 class="section-title">Как связаться</h2>
-        <p>
-          По вопросам участия в проекте и возможного сотрудничества можно
-          обращаться к координатору проекта:
-        </p>
+      <article class="plain-card" id="contact">
+        <h2>Как связаться</h2>
+        <p>Если хотите присоединиться или просто обсудить проект:</p>
         <ul>
-          <li>
-            Email:
-            <a href="mailto:your.email@example.com">your.email@example.com</a>
-          </li>
-          <li>
-            Telegram:
-            <a href="https://t.me/your_telegram" target="_blank">@your_telegram</a>
-          </li>
+          <li>Email: <a href="mailto:[[your.email@example.com]]">[[your.email@example.com]]</a></li>
+          <li>Telegram: <a href="https://t.me/[[your_telegram]]" target="_blank">@[[your_telegram]]</a></li>
         </ul>
-        <p>
-          В обращении желательно кратко указать:
-        </p>
+        <p>В письме/сообщении можно кратко указать:</p>
         <ul>
-          <li>ваш текущий статус (студент, аспирант, разработчик, исследователь);</li>
-          <li>опыт в области ML и/или спектроскопии / фотоники;</li>
-          <li>ссылки на GitHub, публикации или проекты (при наличии).</li>
+          <li>кто вы (студент, аспирант, разработчик, исследователь);</li>
+          <li>опыт в ML и/или спектроскопии / фотонике;</li>
+          <li>ссылки на GitHub, публикации или проекты (если есть).</li>
         </ul>
       </article>
     </section>
   </main>
 
   <footer>
-    <p>
-      Шаблон лендинга проекта для GitHub Pages. Замените текст в [[квадратных скобках]]
-      и при необходимости адаптируйте формулировки под конкретный грант и тематику.
-    </p>
+    Шаблон сайта проекта в стиле «лаконичный научный лендинг». Замените текст в
+    [[квадратных скобках]] и адаптируйте под свой грант и команду.
   </footer>
 </body>
 </html>
