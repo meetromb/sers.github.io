@@ -2,25 +2,23 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>ML + Спектроскопия / Фотоника — научный проект</title>
+  <title>Проект: машинное обучение в спектроскопии и фотонике</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="Научный проект в области спектроскопии / фотоники с применением машинного обучения. Описание проекта и открытые роли."
+    content="Научный проект в области спектроскопии и фотоники с применением методов машинного обучения."
   />
   <style>
-    /* Базовая типографика и макет */
     :root {
-      --bg: #f5f5f7;
+      --bg: #f5f5f5;
       --bg-card: #ffffff;
-      --accent: #2563eb;
-      --accent-soft: #dbeafe;
+      --accent: #1f4b99;
+      --accent-soft: #e1e7f5;
       --text-main: #111827;
       --text-muted: #4b5563;
-      --border-subtle: #e5e7eb;
-      --radius: 14px;
-      --shadow-soft: 0 16px 40px rgba(15, 23, 42, 0.08);
-      --max-width: 880px;
+      --border-subtle: #d1d5db;
+      --radius-card: 8px;
+      --max-width: 900px;
     }
 
     * {
@@ -31,7 +29,7 @@
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         sans-serif;
-      background: radial-gradient(circle at top left, #e0f2fe, #f5f5f7 45%) fixed;
+      background: var(--bg);
       color: var(--text-main);
       -webkit-font-smoothing: antialiased;
     }
@@ -46,188 +44,165 @@
     }
 
     header {
-      padding: 18px 20px 8px;
+      border-bottom: 1px solid var(--border-subtle);
+      background-color: #ffffff;
     }
 
     .nav {
       max-width: var(--max-width);
       margin: 0 auto;
+      padding: 14px 16px;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 8px;
     }
 
     .nav-title {
       font-weight: 600;
+      font-size: 0.95rem;
       letter-spacing: 0.03em;
-      font-size: 0.9rem;
       text-transform: uppercase;
       color: var(--text-muted);
     }
 
     .nav-links {
       display: flex;
-      gap: 16px;
-      font-size: 0.9rem;
       flex-wrap: wrap;
-      justify-content: flex-end;
+      gap: 14px;
+      font-size: 0.9rem;
     }
 
     .nav-links a {
       color: var(--text-muted);
       text-decoration: none;
-      padding: 4px 8px;
-      border-radius: 999px;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
     }
 
     .nav-links a:hover {
-      background: var(--accent-soft);
       color: var(--accent);
+      border-bottom-color: var(--accent-soft);
     }
 
     main {
-      padding: 12px 20px 40px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 18px 16px 32px;
     }
 
     .card {
-      max-width: var(--max-width);
-      margin: 0 auto 32px;
-      background: rgba(255, 255, 255, 0.88);
-      backdrop-filter: blur(16px);
-      border-radius: 24px;
-      box-shadow: var(--shadow-soft);
-      padding: 24px 22px;
-      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: var(--bg-card);
+      border-radius: var(--radius-card);
+      border: 1px solid var(--border-subtle);
+      padding: 24px 20px;
+      margin-bottom: 18px;
     }
 
     @media (min-width: 768px) {
       .card {
-        padding: 32px 32px;
+        padding: 26px 24px;
       }
     }
 
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: #1d4ed8;
+    .hero-kicker {
       font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
       text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-
-    .hero-tag-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: #22c55e;
+      letter-spacing: 0.12em;
+      color: #6b7280;
+      margin-bottom: 6px;
     }
 
     .hero-title {
-      font-size: clamp(1.9rem, 3vw, 2.4rem);
-      line-height: 1.12;
-      margin: 0 0 10px;
+      font-size: clamp(1.6rem, 2.4vw, 2rem);
+      line-height: 1.2;
+      margin: 0 0 8px;
     }
 
     .hero-subtitle {
-      margin: 0 0 16px;
+      margin: 0 0 14px;
       color: var(--text-muted);
-      font-size: 0.98rem;
-      max-width: 560px;
+      font-size: 0.95rem;
+      max-width: 640px;
     }
 
-    .hero-highlight {
+    .hero-note {
       border-left: 3px solid var(--accent-soft);
       padding-left: 10px;
-      margin: 16px 0;
-      color: var(--text-muted);
+      margin: 14px 0;
       font-size: 0.9rem;
+      color: var(--text-muted);
     }
 
-    .hero-cta {
+    .hero-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
+
+    .hero-meta span {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background-color: #f9fafb;
+    }
+
+    .hero-actions {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
       align-items: center;
-      margin-top: 8px;
     }
 
     .btn-primary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 9px 16px;
-      border-radius: 999px;
-      border: none;
-      background: var(--accent);
-      color: white;
-      font-size: 0.95rem;
-      font-weight: 500;
+      padding: 7px 14px;
+      font-size: 0.92rem;
+      border-radius: 4px;
+      border: 1px solid var(--accent);
+      background-color: var(--accent);
+      color: #ffffff;
       cursor: pointer;
       text-decoration: none;
-      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
-    }
-
-    .btn-primary span {
-      font-size: 1.1rem;
     }
 
     .btn-primary:hover {
       filter: brightness(1.03);
-      transform: translateY(-1px);
-      box-shadow: 0 16px 40px rgba(37, 99, 235, 0.45);
     }
 
     .btn-secondary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px dashed var(--border-subtle);
-      background: rgba(255, 255, 255, 0.8);
-      color: var(--text-muted);
+      padding: 7px 12px;
       font-size: 0.9rem;
+      border-radius: 4px;
+      border: 1px solid var(--border-subtle);
+      background-color: #f9fafb;
+      color: var(--text-muted);
       text-decoration: none;
     }
 
     .btn-secondary:hover {
-      border-style: solid;
       border-color: var(--accent);
       color: var(--accent);
     }
 
-    .hero-meta {
-      margin-top: 18px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .hero-meta span {
-      padding: 4px 9px;
-      border-radius: 999px;
-      background: rgba(249, 250, 251, 0.9);
-      border: 1px solid var(--border-subtle);
-    }
-
-    section {
-      margin-top: 24px;
-    }
-
     section h2 {
-      font-size: 1.15rem;
-      margin: 0 0 10px;
+      font-size: 1.1rem;
+      margin: 0 0 8px;
+    }
+
+    section h3 {
+      font-size: 1rem;
+      margin: 18px 0 6px;
     }
 
     section p {
@@ -249,35 +224,12 @@
       margin-top: 4px;
     }
 
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 6px;
-    }
-
-    .pill {
-      padding: 3px 8px;
-      border-radius: 999px;
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      font-size: 0.78rem;
-      color: #6b7280;
-    }
-
-    .muted-label {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #9ca3af;
-      margin-bottom: 4px;
-    }
-
     .two-column {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
       gap: 18px;
       align-items: flex-start;
+      margin-top: 8px;
     }
 
     @media (max-width: 720px) {
@@ -288,38 +240,44 @@
         flex-direction: column;
         align-items: flex-start;
       }
-      header {
-        padding-bottom: 0;
-      }
-      .card {
-        margin-bottom: 24px;
-      }
     }
 
-    .role-badge {
-      display: inline-flex;
-      align-items: center;
+    .muted-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #9ca3af;
+      margin-bottom: 4px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
       gap: 6px;
-      padding: 4px 9px;
-      border-radius: 999px;
-      background: #ecfeff;
-      border: 1px solid #a5f3fc;
-      font-size: 0.8rem;
-      color: #0e7490;
-      margin-bottom: 6px;
+      margin-top: 6px;
     }
 
-    .role-badge-dot {
-      width: 6px;
-      height: 6px;
+    .pill {
+      padding: 2px 7px;
       border-radius: 999px;
-      background: #22c55e;
+      border: 1px solid #e5e7eb;
+      background-color: #f9fafb;
+      font-size: 0.78rem;
+      color: #6b7280;
+    }
+
+    .role-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #374151;
+      margin-bottom: 4px;
     }
 
     footer {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 0 20px 22px;
+      padding: 8px 16px 20px;
       font-size: 0.78rem;
       color: #9ca3af;
     }
@@ -330,11 +288,11 @@
     <div class="nav">
       <div class="nav-title">
         <!-- Замените название на своё -->
-        ML × Спектроскопия / Фотоника
+        Проект: ML в спектроскопии и фотонике
       </div>
       <nav class="nav-links">
         <a href="#about">О проекте</a>
-        <a href="#work">Что делаем</a>
+        <a href="#goals">Научные задачи</a>
         <a href="#ml-role">ML-роль</a>
         <a href="#team">Команда</a>
         <a href="#contact">Контакты</a>
@@ -343,248 +301,227 @@
   </header>
 
   <main>
-    <!-- HERO-БЛОК -->
+    <!-- Вступительный блок -->
     <article class="card" id="top">
-      <div class="hero-tag">
-        <span class="hero-tag-dot"></span>
-        Научный проект
-        <span>·</span>
-        спектроскопия / фотоника / ML
-      </div>
+      <div class="hero-kicker">Научный исследовательский проект</div>
       <h1 class="hero-title">
         Машинное обучение для анализа спектров и фотонных структур
       </h1>
       <p class="hero-subtitle">
-        Мы исследуем, как методы ML могут помочь извлекать физически осмысленную
-        информацию из спектров (SERS, Raman, PL и др.) и сигналов в
-        фотонных структурах — с упором на реальные экспериментальные данные.
+        Проект посвящён использованию методов машинного обучения для обработки
+        и интерпретации экспериментальных данных спектроскопии
+        (например, Raman / SERS, фотолюминесценция) и сигналов в фотонных
+        структурах.
       </p>
 
-      <p class="hero-highlight">
-        Сейчас мы ищем человека, которому интересно совместить работу с
-        экспериментальными данными по спектроскопии / фотонике и современное
-        машинное обучение: от базовых моделей до прототипов, пригодных для
-        научных публикаций.
+      <p class="hero-note">
+        Проект поддержан грантом [[название фонда / программы, номер гранта]] и
+        реализуется на базе [[организация / лаборатория / кафедра]]. В настоящий
+        момент мы открыты к сотрудничеству и ищем специалиста по машинному
+        обучению, заинтересованного в работе с реальными экспериментальными
+        данными.
       </p>
 
-      <div class="hero-cta">
-        <!-- Замените ссылку mailto/Telegram на свою -->
+      <div class="hero-actions">
+        <!-- Замените mailto/Telegram на свои -->
         <a class="btn-primary" href="mailto:your.email@example.com?subject=ML%20%2B%20Спектроскопия%20—%20проект">
-          <span>✉️</span>
           Написать координатору проекта
         </a>
         <a class="btn-secondary" href="#ml-role">
-          Узнать больше о ML-задачах →
+          Подробнее о задачах для ML-специалиста
         </a>
       </div>
 
       <div class="hero-meta">
-        <!-- Замените значения под себя -->
-        <span>Грант: [[название фонда / программы]]</span>
         <span>Срок проекта: [[2024–2026]]</span>
+        <span>Области: спектроскопия, фотоника, ML</span>
         <span>Формат: удалённо / гибридно</span>
       </div>
     </article>
 
-    <!-- БЛОК О ПРОЕКТЕ -->
+    <!-- О проекте -->
     <article class="card" id="about">
       <section>
         <h2>О проекте</h2>
         <p>
-          В проекте мы работаем с <strong>спектроскопическими данными</strong>
-          (например, Raman / SERS, фотолюминесценция, поглощение) и
-          <strong>фотонными структурами</strong> ([[
-          наноструктурированные поверхности, волноводы, резонаторы и т.п. ]]).
+          В проекте рассматриваются экспериментальные данные спектроскопии и
+          фотоники: [[уточните, например: Raman / SERS-спектры, спектры
+          фотолюминесценции, спектры поглощения, отклик фотонных кристаллов и т.п.]].
+          Основной интерес представляет извлечение физически интерпретируемых
+          параметров образцов и среды по измеренным спектрам и сигналам.
         </p>
         <p>
-          Базовый научный вопрос: можем ли мы с помощью машинного обучения
-          надёжно извлекать параметры образцов и среды по измеренным спектрам и
-          сигналам, учитывая шум, дрейф установки и вариативность
-          экспериментальных условий.
+          Классические методы обработки данных спектроскопии (фильтрация,
+          подгонка линий, деконволюция) во многих случаях чувствительны к шуму,
+          дрейфу установки и вариациям экспериментальных условий. В рамках
+          проекта исследуется, как современные методы машинного обучения могут
+          дополнить и расширить эти подходы.
         </p>
         <p>
-          Проект поддержан грантом [[название гранта / номер проекта]],
-          реализуется на базе [[университет / лаборатория / институт]] в
-          сотрудничестве с [[партнёры: кафедра, клиника, компания и т.п.]].
+          Работа ведётся в сотрудничестве с [[партнёры: лаборатория,
+          кафедра, клиника, компания и т.д.]], которые обеспечивают доступ к
+          экспериментальным данным и доменной экспертизе.
         </p>
       </section>
 
-      <section id="work">
-        <h2>Что мы делаем</h2>
+      <section id="goals">
+        <h2>Научные задачи и план работ</h2>
         <div class="two-column">
           <div>
             <p class="muted-label">Основные направления</p>
             <ul>
               <li>
-                Сбор и подготовка массивов спектров / сигналов
-                при разных режимах измерений и условиях эксперимента.
+                Формирование и унификация массивов спектров / сигналов,
+                полученных при различных режимах измерений и условиях эксперимента.
               </li>
               <li>
-                Исследование методов ML для:
-                <em>денойзинга</em>, <em>классификации</em>,
-                <em>регрессии параметров</em>, <em>кластеризации</em> и
-                <em>поиска аномалий</em>.
+                Исследование методов ML для задач денойзинга, классификации,
+                регрессии параметров, кластеризации и поиска аномалий
+                в спектроскопических данных.
               </li>
               <li>
-                Сопоставление ML-результатов с физическими моделями
-                и доменной экспертизой (оптика, фотоника, химия / биология).
+                Сопоставление результатов ML-моделей с физическими моделями
+                и независимыми измерениями; анализ интерпретируемости.
               </li>
               <li>
-                Подготовка и подача статей в профильные журналы и на конференции
-                по спектроскопии, фотонике и прикладному ML.
+                Подготовка и подача результатов в профильные журналы и
+                на конференции по спектроскопии, фотонике и прикладному ML.
               </li>
             </ul>
           </div>
           <div>
-            <p class="muted-label">Данные и стек</p>
+            <p class="muted-label">Данные и вычислительный стек</p>
             <p>
-              Сейчас в работе несколько наборов данных:
+              В проекте используются несколько наборов данных, в том числе:
             </p>
             <ul>
-              <li>
-                [[тип данных 1, пример: SERS-спектры биомаркеров на разных
-                подложках]];
-              </li>
-              <li>
-                [[тип данных 2, пример: Raman/PL от нанофотонных структур]];
-              </li>
-              <li>
-                [[тип данных 3, пример: временные ряды/сканы по параметрам
-                установки]].
-              </li>
+              <li>[[пример: SERS-спектры биомаркеров на различных подложках]];</li>
+              <li>[[пример: Raman/PL-спектры нанофотонных структур]];</li>
+              <li>[[пример: временные ряды и карты, полученные при сканировании параметров установки]].</li>
             </ul>
             <p>
-              Используем в основном Python, PyTorch / TensorFlow, NumPy/pandas,
-              scikit-learn, а также типичный исследовательский стек:
-              Git, Jupyter, Docker (по необходимости).
+              Основные инструменты: Python, библиотеки PyTorch / TensorFlow,
+              NumPy, pandas, scikit-learn; для репозиториев кода используется
+              Git. При необходимости применяются контейнеры (Docker) и
+              MLflow / аналогичные системы для отслеживания экспериментов.
             </p>
             <div class="pill-row">
               <span class="pill">Python</span>
               <span class="pill">PyTorch / TF</span>
-              <span class="pill">Спектроскопия</span>
-              <span class="pill">Фотоника</span>
-              <span class="pill">Научные статьи</span>
+              <span class="pill">Спектроскопические данные</span>
+              <span class="pill">Фотонные структуры</span>
+              <span class="pill">Научные публикации</span>
             </div>
           </div>
         </div>
       </section>
     </article>
 
-    <!-- ML-РОЛЬ -->
+    <!-- Роль ML-специалиста -->
     <article class="card" id="ml-role">
       <section>
-        <div class="role-badge">
-          <span class="role-badge-dot"></span>
-          Сейчас особенно ищем: ML-инженер / исследователь
-        </div>
-        <h2>Роль ML-инженера / исследователя</h2>
+        <div class="role-label">Открытая роль</div>
+        <h2>Роль специалиста по машинному обучению</h2>
         <p>
-          Мы не делаем «продакшн-ML», а работаем в исследовательском формате:
-          много экспериментов, сравнение подходов, обсуждение результатов с
-          физиками/химиками/инженерами и подготовка статей.
+          Проект реализуется в исследовательском формате, с упором на постановку
+          и проверку гипотез, воспроизводимость экспериментов и публикацию
+          результатов. Мы ищем человека, который будет заниматься разработкой и
+          анализом ML-моделей для наших спектроскопических и фотонных данных.
         </p>
-        <p>Задачи, в которых нам нужна помощь:</p>
+
+        <h3>Примеры задач</h3>
         <ul>
           <li>
-            Построение и обучение моделей для анализа спектров и связанных
-            сигналов (классификация, регрессия параметров, детекция аномалий).
+            Разработка и обучение моделей для анализа спектров: классификация
+            образцов, оценка концентраций, извлечение параметров среды.
           </li>
           <li>
-            Проектирование и запуск серий экспериментов: выбор архитектур,
-            гиперпараметров, метрик и протоколов валидации.
+            Построение протоколов валидации и сравнения моделей
+            (разделение выборок, подбор метрик, анализ стабильности).
           </li>
           <li>
-            Подготовка датасетов: базовая очистка, агрегация, возможные
-            аугментации (совместно с экспериментаторами).
+            Подготовка и предварительная обработка данных: базовая фильтрация,
+            нормировка, агрегирование, по согласованию — аугментации.
           </li>
           <li>
-            Репродукция и адаптация идей из статей (и, по возможности, предложение
-            своих улучшений).
+            Реализация и адаптация идей из научных публикаций
+            (в том числе репродукция результатов на наших данных).
           </li>
           <li>
-            Оформление результатов в виде кода, отчётов, рисунков и фрагментов
-            для статей.
+            Подготовка иллюстраций и фрагментов анализа для статей и докладов.
           </li>
         </ul>
-      </section>
 
-      <section>
-        <h2>Кому может быть интересно</h2>
-        <p>Ориентировочный профиль человека, которого мы ищем:</p>
+        <h3>Ожидаемый профиль</h3>
         <ul>
           <li>
-            Уверенный Python и опыт работы с современными ML-фреймворками
-            (PyTorch / TensorFlow / JAX — на уровне собственных моделей, а не
-            только туториалов).
+            Уверенное владение Python и одним из основных ML-фреймворков
+            (PyTorch / TensorFlow / JAX) на уровне реализации собственных моделей.
           </li>
           <li>
-            Базовое понимание машинного обучения: переобучение, регуляризация,
-            валидация, метрики, основы работы нейросетей.
+            Понимание базовых понятий машинного обучения:
+            переобучение, регуляризация, валидация, выбор метрик.
           </li>
           <li>
-            Готовность читать статьи и реализовывать описанные там методы
-            (не обязательно «с нуля», но с пониманием происходящего).
+            Готовность разбираться в научных статьях по ML и по
+            спектроскопии / фотонике совместно с доменными специалистами.
           </li>
           <li>
-            Интерес к спектроскопии / фотонике / экспериментальной физике —
-            опыт в этих областях будет плюсом, но не обязателен.
+            Интерес к работе с экспериментальными данными; опыт в
+            спектроскопии или фотонике будет плюсом, но не является
+            обязательным требованием.
           </li>
         </ul>
 
         <p>
-          Формат участия: частичная занятость, гибкий график, полностью
-          удалённо или с возможностью приходить в лабораторию [[если есть
-          офлайн-площадка]].
-        </p>
-        <p>
-          Мы можем обсуждать
-          <strong>вознаграждение из гранта</strong> (ориентир: [[N ₽ / месяц при
-          X ч/неделю]]) и
-          <strong>соавторство в публикациях</strong>. Отдельно можно согласовать
-          использование результатов в дипломе / диссертации.
+          Формат участия обсуждается индивидуально. Возможна частичная занятость
+          с гибким графиком (ориентировочно [[X часов в неделю]]) в удалённом
+          или гибридном формате. Предусматривается вознаграждение из средств
+          гранта (ориентир: [[N ₽ в месяц]] при указанной нагрузке) и
+          соавторство в публикациях по результатам работы.
         </p>
       </section>
     </article>
 
-    <!-- КОМАНДА -->
+    <!-- Команда -->
     <article class="card" id="team">
       <section>
         <h2>Команда проекта</h2>
         <p>
-          Проект ведётся на базе [[лаборатория / кафедра / институт]].
-          На данный момент в команде:
+          Проект выполняется на базе [[лаборатория / кафедра / институт]]. В
+          состав команды входят:
         </p>
         <ul>
           <li>
-            <strong>[[Имя Фамилия]]</strong> — руководитель проекта, [[должность
-            / учёная степень, область интересов]].
+            <strong>[[Имя Фамилия]]</strong> — руководитель проекта, [[должность,
+            учёная степень, область научных интересов]].
           </li>
           <li>
-            <strong>[[Имя Фамилия]]</strong> — экспериментальная часть,
-            [[специализация: SERS, Raman, фотоника и т.п.]].
+            <strong>[[Имя Фамилия]]</strong> — экспериментальная часть (спектроскопия /
+            фотоника).
           </li>
           <li>
-            <strong>[[Имя Фамилия]]</strong> — анализ данных и моделирование.
+            <strong>[[Имя Фамилия]]</strong> — численное моделирование и анализ данных.
           </li>
           <li>
-            [[Добавьте других участников / партнёров по необходимости]].
+            [[При необходимости добавьте других участников и партнёров.]]
           </li>
         </ul>
         <p>
-          Мы открыты к коллаборациям с исследователями и студентами
-          (бакалавриат/магистратура/аспирантура), которым интересны пересечения
-          физики, химии, биологии и машинного обучения.
+          К участию приглашаются студенты (бакалавриат, магистратура),
+          аспиранты и исследователи, заинтересованные в стыке физики,
+          химии, биологии и методов машинного обучения.
         </p>
       </section>
     </article>
 
-    <!-- КОНТАКТЫ -->
+    <!-- Контакты -->
     <article class="card" id="contact">
       <section>
-        <h2>Как к нам присоединиться или просто обсудить проект</h2>
+        <h2>Контакты</h2>
         <p>
-          Если вам откликается тематика проекта или вы хотите обсудить
-          возможное сотрудничество, напишите нам:
+          По вопросам участия в проекте и возможного сотрудничества
+          просим обращаться к координатору проекта:
         </p>
         <ul>
           <li>
@@ -595,30 +532,21 @@
           </li>
         </ul>
         <p>
-          В письме/сообщении можно кратко рассказать:
+          В обращении желательно кратко указать:
         </p>
         <ul>
-          <li>кто вы (студент, аспирант, разработчик и т.п.);</li>
-          <li>какой у вас опыт в ML и/или в спектроскопии/фотонике;</li>
-          <li>
-            есть ли у вас GitHub / публикации / проекты, которыми вы гордитесь.
-          </li>
+          <li>ваш текущий статус (студент, аспирант, разработчик, исследователь);</li>
+          <li>краткий опыт в области ML и/или спектроскопии / фотоники;</li>
+          <li>ссылки на GitHub / публикации / проекты (при наличии).</li>
         </ul>
-        <p>
-          Даже если сейчас вам не подходит формат участия, нам всё равно
-          интересно познакомиться с людьми, которые разделяют интерес к ML
-          и спектроскопии / фотонике.
-        </p>
       </section>
     </article>
   </main>
 
   <footer>
-    <!-- Мелкий текст внизу -->
     <p>
-      Этот сайт сделан как лёгкая визитка проекта для GitHub Pages.
-      Замените текст в [[квадратных скобках]] на свои данные и при желании
-      адаптируйте структуру под свой грант/команду.
+      Шаблон страницы проекта для GitHub Pages. Замените текст в [[квадратных скобках]]
+      и при необходимости адаптируйте формулировки под конкретный грант и команду.
     </p>
   </footer>
 </body>
